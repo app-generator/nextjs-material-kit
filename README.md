@@ -1,4 +1,4 @@
-# NextJS Material Kit
+# [NextJS Material Kit](https://www.creative-tim.com/product/nextjs-material-kit?AFFILIATE=128200)
 
 > Forked from the [original version](https://www.creative-tim.com/product/nextjs-material-kit?AFFILIATE=128200) designed by `Creative-Tim`, for accelerated development.
 
@@ -162,4 +162,4 @@ nextjs-material-kit
 <br />
 
 ---
-NextJS Material Kit - Actively supported by `AppSeed` and `Creative-Tim`. 
+[NextJS Material Kit](https://www.creative-tim.com/product/nextjs-material-kit?AFFILIATE=128200) - Actively supported by `AppSeed` and `Creative-Tim`. 
