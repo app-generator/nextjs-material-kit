@@ -1,6 +1,6 @@
-# [NextJS Material Kit](https://www.creative-tim.com/product/nextjs-material-kit?AFFILIATE=128200)
+# [NextJS Material Kit](https://bit.ly/37l2piJ)
 
-> Forked from the [original version](https://www.creative-tim.com/product/nextjs-material-kit?AFFILIATE=128200) designed by `Creative-Tim`, for accelerated development.
+> Forked from the [original version](https://bit.ly/37l2piJ) designed by `Creative-Tim`, for accelerated development.
 
 **NextJS Material Kit** makes use of light, surface and movement. It uses a deliberate color choice, edge-to-edge imagery and large scale typography. The general layout resembles sheets of paper following multiple different layers, so that the depth and order is obvious. The navigation stays mainly on the left and the actions on the right.
 
@@ -162,4 +162,4 @@ nextjs-material-kit
 <br />
 
 ---
-[NextJS Material Kit](https://www.creative-tim.com/product/nextjs-material-kit?AFFILIATE=128200) - Actively supported by `AppSeed` and `Creative-Tim`. 
+[NextJS Material Kit](https://bit.ly/37l2piJ) - Actively supported by `AppSeed` and `Creative-Tim`. 
