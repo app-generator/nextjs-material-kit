@@ -1,0 +1,35 @@
+import React from "react";
+// nodejs library to set properties for components
+
+// @material-ui/core components
+import { makeStyles } from "@material-ui/core/styles";
+import LinearProgress from "@material-ui/core/LinearProgress";
+// core components
+import styles from "../../styles/jss/nextjs-material-kit/components/customLinearProgressStyle";
+
+const useStyles = makeStyles(styles);
+
+export default function CustomLinearProgress(props: CustomLinearProgressProps) {
+  const classes = useStyles();
+  const { color, ...rest } = props;
+  return (
+    <LinearProgress
+      {...rest}
+      classes={{
+        root: classes.root + " " + classes[(color || "gray") + "Background"],
+        bar: classes.bar + " " + classes[color || "gray"],
+      }}
+    />
+  );
+}
+
+export interface CustomLinearProgressProps {
+  color:
+    | "primary"
+    | "warning"
+    | "danger"
+    | "success"
+    | "info"
+    | "rose"
+    | "gray";
+}
