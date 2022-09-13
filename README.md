@@ -2,6 +2,8 @@
 
 > Forked from the [original version](https://bit.ly/37l2piJ) designed by `Creative-Tim`, for accelerated development.
 
+<br />
+
 **NextJS Material Kit** makes use of light, surface and movement. It uses a deliberate color choice, edge-to-edge imagery and large scale typography. The general layout resembles sheets of paper following multiple different layers, so that the depth and order is obvious. The navigation stays mainly on the left and the actions on the right.
 
 <br />
