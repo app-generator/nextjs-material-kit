@@ -1,10 +1,14 @@
 # NextJS Material Kit
 
-> Forked from the [original version](https://demos.creative-tim.com/nextjs-material-kit/?AFFILIATE=128200) designed by `Creative-Tim`.
+> Forked from the [original version](https://www.creative-tim.com/product/nextjs-material-kit?AFFILIATE=128200) designed by `Creative-Tim`, for accelerated development.
 
 **NextJS Material Kit** makes use of light, surface and movement. It uses a deliberate color choice, edge-to-edge imagery and large scale typography. The general layout resembles sheets of paper following multiple different layers, so that the depth and order is obvious. The navigation stays mainly on the left and the actions on the right.
 
+<br />
+
 ![Product Presentation Image](https://raw.githubusercontent.com/creativetimofficial/public-assets/master/nextjs-material-kit/nextjs-material-kit.jpg)
+
+<br />
 
 This new design has elements that have been the result of research regarding ink and paper and the way objects and materials interact in real life. The result is a beautiful and consistent set of elements that can get you started with your next project. NextJS Material Kit is a great tool if you are looking to create a web presence for your web application and need to be consistent, leaving the impression of visually similar elements. It is also a great resource in its own right, looking gorgeous and helping you build your web pages.
 
