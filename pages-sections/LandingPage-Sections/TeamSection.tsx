@@ -7,12 +7,12 @@ import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 
 // core components
-import GridContainer from "../../components/Grid/GridContainer.js";
-import GridItem from "../../components/Grid/GridItem.js";
-import Button from "../../components/CustomButtons/Button.js";
-import Card from "../../components/Card/Card.js";
-import CardBody from "../../components/Card/CardBody.js";
-import CardFooter from "../../components/Card/CardFooter.js";
+import GridContainer from "../../components/Grid/GridContainer";
+import GridItem from "../../components/Grid/GridItem";
+import Button from "../../components/CustomButtons/Button";
+import Card from "../../components/Card/Card";
+import CardBody from "../../components/Card/CardBody";
+import CardFooter from "../../components/Card/CardFooter";
 
 import styles from "../../styles/jss/nextjs-material-kit/pages/landingPageSections/teamStyle";
 

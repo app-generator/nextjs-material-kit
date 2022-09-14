@@ -46,6 +46,10 @@
     "styled-components": "^5.3.5",
     "webpack": "^5.74.0"
   },
+  "peerDependencies": {
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0"
+  },
   "devDependencies": {
     "@types/node": "^18.7.17",
     "@types/react": "^18.0.19",
