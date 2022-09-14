@@ -17,7 +17,7 @@ import HeaderLinks from "../components/Header/HeaderLinks";
 import NavPills from "../components/NavPills/NavPills";
 import Parallax from "../components/Parallax/Parallax";
 
-import styles from "../../nextjs-material-kit/pages";
+import styles from "../styles/jss/nextjs-material-kit/pages/profilePage";
 
 const useStyles = makeStyles(styles);
 
