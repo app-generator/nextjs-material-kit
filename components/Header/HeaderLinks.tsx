@@ -52,7 +52,7 @@ export default function HeaderLinks(props) {
       </ListItem>
       <ListItem className={classes.listItem}>
         <Button
-          href="https://www.creative-tim.com/product/nextjs-material-kit-pro?ref=njsmk-navbar"
+          href="https://www.creative-tim.com/product/nextjs-material-kit-pro?AFFILIATE=128200"
           color="transparent"
           target="_blank"
           className={classes.navLink}
@@ -62,7 +62,7 @@ export default function HeaderLinks(props) {
       </ListItem>
       <ListItem className={classes.listItem}>
         <Button
-          href="https://www.creative-tim.com/product/nextjs-material-kit?ref=njsmk-navbar"
+          href="https://www.creative-tim.com/product/nextjs-material-kit?AFFILIATE=128200"
           color="transparent"
           target="_blank"
           className={classes.navLink}

@@ -30,7 +30,7 @@ export default function SectionDownload() {
             <Button
               color="primary"
               size="lg"
-              href="https://www.creative-tim.com/product/nextjs-material-kit?ref=njsmk-download-section"
+              href="https://www.creative-tim.com/product/nextjs-material-kit?AFFILIATE=128200"
               target="_blank"
             >
               Free NextJS Download
@@ -38,7 +38,7 @@ export default function SectionDownload() {
             <Button
               color="primary"
               size="lg"
-              href="https://www.creative-tim.com/product/material-kit-react?ref=njsmk-download-section"
+              href="https://www.creative-tim.com/product/material-kit-react?AFFILIATE=128200"
               target="_blank"
             >
               Free React Downoad
@@ -64,7 +64,7 @@ export default function SectionDownload() {
             <Button
               color="rose"
               size="lg"
-              href="https://www.creative-tim.com/product/nextjs-material-kit-pro?ref=njsmk-download-section"
+              href="https://www.creative-tim.com/product/nextjs-material-kit-pro?AFFILIATE=128200"
               target="_blank"
             >
               NextJS Material Kit PRO
@@ -72,7 +72,7 @@ export default function SectionDownload() {
             <Button
               color="rose"
               size="lg"
-              href="https://www.creative-tim.com/product/material-kit-pro-react?ref=njsmk-download-section"
+              href="https://www.creative-tim.com/product/material-kit-pro-react?AFFILIATE=128200"
               target="_blank"
             >
               Material Kit PRO React
