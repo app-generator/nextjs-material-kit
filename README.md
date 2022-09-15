@@ -25,7 +25,7 @@
 
 <br />
 
-![Product Presentation Image](https://raw.githubusercontent.com/creativetimofficial/public-assets/master/nextjs-material-kit/nextjs-material-kit.jpg)
+![NextJS Material Kit - open-source template Actively supported by AppSeed and Creative-Tim.](https://user-images.githubusercontent.com/51070104/190355309-0141db2c-2cd8-4ba9-8fe1-c5823ac2b3e7.jpg)
 
 <br />
 
