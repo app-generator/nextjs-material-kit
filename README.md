@@ -1,6 +1,6 @@
 # [NextJS Material Kit](https://nextjs-material-kit.appseed-srv1.com/)
 
-> [LIVE Demo](https://nextjs-material-kit.appseed-srv1.com/) Forked from the [original version](https://bit.ly/37l2piJ) designed by `Creative-Tim`, for accelerated development.
+> `Open-Source` **NextJS Starter** - [LIVE DEMO](https://nextjs-material-kit.appseed-srv1.com/). Forked from the [original version](https://bit.ly/37l2piJ) crafted by `Creative-Tim`, for accelerated development.
 
 <br />
 
