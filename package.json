@@ -7,6 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "export": "next export",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && rm -rf .next/ && npm install && npm run dev"
   },
   "repository": {
