@@ -11,6 +11,20 @@
 
 <br />
 
+> Product Roadmap 
+
+| Status | Item | info | 
+| --- | --- | --- |
+| ✅ | `Up-to-date Dependencies` | - |
+| ✅ | `Typescript Migration` | - |
+| ❌ | `Auth0 Integration` | [info](https://github.com/vercel/next.js/tree/canary/examples/auth0) |
+| ❌ | `eCommerce Module` | self hosted, minimal solution |
+| ❌ | `eCommerce Headless` | Products pulled from a headless service |
+| ❌ | `Blog Module` | Self hosted, Markdown Translation |
+| ❌ | `Blog Headless` | Articles pulled from a headless service |
+
+<br />
+
 ![Product Presentation Image](https://raw.githubusercontent.com/creativetimofficial/public-assets/master/nextjs-material-kit/nextjs-material-kit.jpg)
 
 <br />
@@ -43,6 +57,16 @@ $ yarn start
 // OR
 $ npm run start
 ```
+
+> Step #4 - Static Export
+
+```bash
+$ yarn export
+// OR
+$ npm run export
+```
+
+The static site is generate in the `out` directory. 
 
 <br />
 
