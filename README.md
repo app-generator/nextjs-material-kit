@@ -15,8 +15,8 @@
 
 | Status | Item | info | 
 | --- | --- | --- |
-| ✅ | `Up-to-date Dependencies` | - |
-| ✅ | `Tested NodeJS Versions` | `16.x`, `18.x` |
+| ✅ | `Up-to-date Dependencies` | `React v18`, `NextJS v12.3` |
+| ✅ | `Tested NodeJS Versions` | `v16.x`, `v18.x` |
 | ✅ | `Typescript Migration` | - |
 | ❌ | `Auth0 Integration` | [info](https://github.com/vercel/next.js/tree/canary/examples/auth0) |
 | ❌ | `eCommerce Module` | self hosted, minimal solution |
