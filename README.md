@@ -1,6 +1,6 @@
-# [NextJS Material Kit](https://bit.ly/37l2piJ)
+# [NextJS Material Kit](https://nextjs-material-kit.appseed-srv1.com/)
 
-> Forked from the [original version](https://bit.ly/37l2piJ) designed by `Creative-Tim`, for accelerated development.
+> [LIVE Demo](https://nextjs-material-kit.appseed-srv1.com/) Forked from the [original version](https://bit.ly/37l2piJ) designed by `Creative-Tim`, for accelerated development.
 
 <br />
 
@@ -191,4 +191,4 @@ nextjs-material-kit
 <br />
 
 ---
-[NextJS Material Kit](https://bit.ly/37l2piJ) - Actively supported by `AppSeed` and `Creative-Tim`. 
+[NextJS Material Kit](https://nextjs-material-kit.appseed-srv1.com/) - Actively supported by `AppSeed` and `Creative-Tim`. 
