@@ -16,6 +16,7 @@
 | Status | Item | info | 
 | --- | --- | --- |
 | ✅ | `Up-to-date Dependencies` | - |
+| ✅ | `Tested NodeJS Versions` | `16.x`, `18.x` |
 | ✅ | `Typescript Migration` | - |
 | ❌ | `Auth0 Integration` | [info](https://github.com/vercel/next.js/tree/canary/examples/auth0) |
 | ❌ | `eCommerce Module` | self hosted, minimal solution |
@@ -35,14 +36,14 @@ This new design has elements that have been the result of research regarding ink
 
 ## Quick start
 
-> Step #1 - Clone the repo
+> 👉 **Step #1** - Clone the repo
 
 ```bash
 $ git clone https://github.com/app-generator/nextjs-material-kit
 $ cd nextjs-material-kit
 ```
 
-> Step #2 - Install modules
+> 👉 **Step #2** - Install modules
 
 ```bash
 $ yarn 
@@ -50,7 +51,7 @@ $ yarn
 $ npm i
 ```
 
-> Step #3 - Start the app
+> 👉 **Step #3** - Start the app
 
 ```bash
 $ yarn start
@@ -58,7 +59,7 @@ $ yarn start
 $ npm run start
 ```
 
-> Step #4 - Static Export
+> **Step #4** - Static Export
 
 ```bash
 $ yarn export
