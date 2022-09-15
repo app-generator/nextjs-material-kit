@@ -59,7 +59,7 @@ $ yarn start
 $ npm run start
 ```
 
-> **Step #4** - Static Export
+> 👉 **Step #4** - Static Export
 
 ```bash
 $ yarn export
