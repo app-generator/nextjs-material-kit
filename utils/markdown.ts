@@ -1,15 +1,14 @@
 import * as path from 'path'
 import * as fs from 'fs';
-import * as matter from 'gray-matter'
-import readingTime from 'reading-time'
+import matter from 'gray-matter';
 import { sync } from 'glob'
 
 const articlesPath = path.join(process.cwd(), 'blog')
 
 export async function getSlug() {
-    const paths = sync(`${articlesPath}/*.md`)
+    const paths = sync(`${articlesPath}/*.mdx`)
 
-    return paths.map((path) => {
+    return paths.map((path: string) => {
         // holds the paths to the directory of the article
         const pathContent = path.split('/')
         const fileName = pathContent[pathContent.length - 1]
@@ -19,8 +18,8 @@ export async function getSlug() {
     })
 }
 
-export async function getArticleFromSlug(slug) {
-    const articleDir = path.join(articlesPath, `${slug}.md`)
+export async function getArticleFromSlug(slug: string) {
+    const articleDir = path.join(articlesPath, `${slug}.mdx`)
     const source = fs.readFileSync(articleDir)
     const { content, data } = matter(source)
 
@@ -31,14 +30,13 @@ export async function getArticleFromSlug(slug) {
             excerpt: data.excerpt,
             title: data.title,
             publishedAt: data.publishedAt,
-            readingTime: readingTime(source).text,
             ...data,
         },
     }
 }
 
 export async function getAllArticles() {
-    const articles = fs.readdirSync(path.join(process.cwd(), 'blog/articles'))
+    const articles = fs.readdirSync(path.join(process.cwd(), 'blog'))
 
     return articles.reduce((allArticles, articleSlug) => {
         // get parsed data from markdown files in the "blog" dir
@@ -51,8 +49,7 @@ export async function getAllArticles() {
         return [
             {
                 ...data,
-                slug: articleSlug.replace('.md', ''),
-                readingTime: readingTime(source).text,
+                slug: articleSlug.replace('.mdx', ''),
             },
             ...allArticles,
         ]
