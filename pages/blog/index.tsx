@@ -7,18 +7,9 @@ import GridContainer from "../../components/Grid/GridContainer";
 import GridItem from "../../components/Grid/GridItem";
 import { makeStyles } from "@material-ui/core/styles";
 import styles from "../../styles/jss/nextjs-material-kit/pages/components";
-import {
-  Card,
-  CardActionArea,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Typography,
-} from "@material-ui/core";
 import Footer from "../../components/Footer/Footer";
 import classNames from "classnames";
-import Link from "next/link";
-import Button from "../../components/CustomButtons/Button";
+import BlogCard from "../../components/Blog/BlogCard";
 
 const useStyles = makeStyles(styles);
 
@@ -58,40 +49,15 @@ export default function BlogPage(props: { posts: PostType[] }) {
         </div>
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
-        <GridItem xs={4}>
-          <div>
-            {posts.map((post, index) => (
-              <Card key={index} sx={{ maxWidth: 4 }}>
-                <CardActionArea>
-                  <CardMedia
-                    component="img"
-                    height="140"
-                    image={post.image_url}
-                    alt={post.title}
-                  />
-                  <CardContent>
-                    <Typography gutterBottom variant="h4" component="div">
-                      {post.title}
-                    </Typography>
-                    <Typography variant="body2">
-                      Published on {post.published}
-                    </Typography>
-                    <Typography variant="overline" component="div">
-                      {post.description}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-                <CardActions>
-                  <Link href={"/blog/" + post.slug} passHref>
-                    <Button size="md" color="primary">
-                      Read now
-                    </Button>
-                  </Link>
-                </CardActions>
-              </Card>
-            ))}
-          </div>
-        </GridItem>
+        <GridContainer alignItems="center" justifyContent="center">
+          <GridItem xs={6}>
+            <div>
+              {posts.map((post, index) => (
+                <BlogCard post={post} key={index} />
+              ))}
+            </div>
+          </GridItem>
+        </GridContainer>
       </div>
       <Footer />
     </div>

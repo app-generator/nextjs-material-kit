@@ -2,7 +2,6 @@ import * as fs from "fs";
 import * as path from "path";
 import matter from "gray-matter";
 import React from "react";
-import Head from "next/head";
 import { MDXRemote } from "next-mdx-remote";
 import Image from "next/image";
 import { Box, Typography } from "@material-ui/core";
@@ -25,9 +24,6 @@ export const PostPage = (props: { frontMatter; mdxSource }) => {
 
   return (
     <div>
-      <Head>
-        <title>{frontMatter.title} | My blog</title>
-      </Head>
       <Header
         brand="NextJS Material Kit"
         rightLinks={<HeaderLinks />}
