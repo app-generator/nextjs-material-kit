@@ -14,6 +14,8 @@ import styles from "../../styles/jss/nextjs-material-kit/pages/components";
 import GridItem from "../../components/Grid/GridItem";
 import GridContainer from "../../components/Grid/GridContainer";
 import classNames from "classnames";
+import Header from "../../components/Header/Header";
+import HeaderLinks from "../../components/Header/HeaderLinks";
 
 const useStyles = makeStyles(styles);
 
@@ -26,13 +28,19 @@ export const PostPage = (props: { frontMatter; mdxSource }) => {
       <Head>
         <title>{frontMatter.title} | My blog</title>
       </Head>
-      <Parallax image="/img/nextjs_header.jpg">
+      <Header
+        brand="NextJS Material Kit"
+        rightLinks={<HeaderLinks />}
+        fixed
+        color="white"
+      />
+      <Parallax image={frontMatter.image_url}>
         <div className={classes.container}>
           <GridContainer>
             <GridItem>
               <div className={classes.brand}>
                 <h1 className={classes.title}>{frontMatter.title}</h1>
-                <Typography variant="body2">{frontMatter.published}</Typography>
+                <Typography variant="h5">{frontMatter.published}</Typography>
                 <Typography variant="body2">
                   {frontMatter.description}
                 </Typography>
