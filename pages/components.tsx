@@ -44,7 +44,7 @@ export default function Components(props) {
         color="transparent"
         changeColorOnScroll={{
           height: 400,
-          color: "white"
+          color: "white",
         }}
         {...rest}
       />
@@ -63,7 +63,7 @@ export default function Components(props) {
         </div>
       </Parallax>
 
-      <div className={classNames(classes.main, classes.mainRaised)}>
+      <div className={classNames(classes.mainRaised)}>
         <SectionBasics />
         <SectionNavbars />
         <SectionTabs />

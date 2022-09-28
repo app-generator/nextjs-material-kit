@@ -1,12 +1,12 @@
 import React from "react";
-import { getAllArticles } from "../utils/markdown";
-import Header from "../components/Header/Header";
-import HeaderLinks from "../components/Header/HeaderLinks";
-import Parallax from "../components/Parallax/Parallax";
-import GridContainer from "../components/Grid/GridContainer";
-import GridItem from "../components/Grid/GridItem";
+import { getAllArticles } from "../../utils/markdown";
+import Header from "../../components/Header/Header";
+import HeaderLinks from "../../components/Header/HeaderLinks";
+import Parallax from "../../components/Parallax/Parallax";
+import GridContainer from "../../components/Grid/GridContainer";
+import GridItem from "../../components/Grid/GridItem";
 import { makeStyles } from "@material-ui/core/styles";
-import styles from "../styles/jss/nextjs-material-kit/pages/components";
+import styles from "../../styles/jss/nextjs-material-kit/pages/components";
 import {
   Card,
   CardActionArea,
@@ -15,9 +15,10 @@ import {
   CardMedia,
   Typography,
 } from "@material-ui/core";
-import Button from "../components/CustomButtons/Button";
-import Footer from "../components/Footer/Footer";
+import Footer from "../../components/Footer/Footer";
 import classNames from "classnames";
+import Link from "next/link";
+import Button from "../../components/CustomButtons/Button";
 
 const useStyles = makeStyles(styles);
 
@@ -26,6 +27,7 @@ type PostType = {
   description: string;
   published: string;
   image_url: string;
+  slug: string;
 };
 
 export default function BlogPage(props: { posts: PostType[] }) {
@@ -80,9 +82,11 @@ export default function BlogPage(props: { posts: PostType[] }) {
                   </CardContent>
                 </CardActionArea>
                 <CardActions>
-                  <Button size="md" color="primary">
-                    Read now
-                  </Button>
+                  <Link href={"/blog/" + post.slug} passHref>
+                    <Button size="md" color="primary">
+                      Read now
+                    </Button>
+                  </Link>
                 </CardActions>
               </Card>
             ))}
