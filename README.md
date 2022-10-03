@@ -18,10 +18,10 @@
 | ✅ | `Up-to-date Dependencies` | `React v18`, `NextJS v12.3` |
 | ✅ | `Tested NodeJS Versions` | `v16.x`, `v18.x` |
 | ✅ | `Typescript Migration` | - |
+| ✅ | `Blog Module` | Self hosted, Markdown Translation |
 | ❌ | `Auth0 Integration` | [info](https://github.com/vercel/next.js/tree/canary/examples/auth0) |
 | ❌ | `eCommerce Module` | self hosted, minimal solution |
 | ❌ | `eCommerce Headless` | Products pulled from a headless service |
-| ❌ | `Blog Module` | Self hosted, Markdown Translation |
 | ❌ | `Blog Headless` | Articles pulled from a headless service |
 
 <br />
