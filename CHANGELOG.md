@@ -1,5 +1,11 @@
 # Change Log
 
+## [1.2.3] 2022-10-0
+### Improvements
+
+- Added Blog Section
+  - Mardown, MDX translation
+
 ## [1.2.2] 2022-09-15
 ### Improvements
 
