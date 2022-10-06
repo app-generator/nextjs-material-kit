@@ -87,8 +87,11 @@ const getStaticProps = async ({ params: { slug } }) => {
 
   return {
     props: {
-      frontMatter,
       mdxSource,
+      frontMatter: {
+        ...frontMatter,
+        published: new Date(frontMatter.published).toDateString(),
+      },
     },
   };
 };
