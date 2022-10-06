@@ -25,6 +25,7 @@ export default function BlogPage(props: { posts: PostType[] }) {
   const classes = useStyles();
 
   const { posts } = props;
+
   return (
     <div>
       <Header
@@ -65,7 +66,24 @@ export default function BlogPage(props: { posts: PostType[] }) {
 }
 
 export const getStaticProps = async () => {
-  const posts = await getAllArticles();
+  const articles: PostType[] = await getAllArticles();
+
+  articles
+    .map((post) => post)
+    .sort((a, b) => {
+      if (a.published > b.published) return 1;
+      if (a.published < b.published) return -1;
+
+      return 0;
+    });
+
+  const posts = articles.map((post) => {
+    return {
+      ...post,
+      published: new Date(post.published).toDateString(),
+    };
+  });
+
   return {
     props: {
       posts,

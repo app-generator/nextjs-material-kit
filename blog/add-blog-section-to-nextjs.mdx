@@ -1,30 +1,230 @@
 ---
-title: Learng how to add a blog section to NextJS
-published: January, 7th. 2022
-description: This is a simple post about React.
+title: Learning how to add a blog section to NextJS
+published: 2022-04-16
+description: This is a simple post on how to add a blog module to NextJS.
 image_url: "/img/examples/studio-2.jpg"
 ---
 
-## General information 
+## General information
 
-ToDo
-
-<br />
-
-## New Module 
-
-ToDo - the new dependencies
+Next.js is great framework based on React to help develop simple and powerful web applications or websites. And it comes
+with interesting integration for Markdown content. Let's learn how we can implement a MDX blog module using Next.js.
 
 <br />
 
-## Implementation 
+## New Module
 
-ToDo: 
+Before starting, we need to add some modules:
+- `@mdx-js/loader@next` is the integration, provided by MDX for webpack bundlers, that compiles Markdown and MDX
+into JavaScript.
+- `@mdx-js/react@next` provides the context for the React app to wrap components and easily style MDX pages.
+- `gray-matter`: we will use Front Matter in this blog, and gray-matter to parse it from a string to a JSON object.
+- `remark-frontmatter`: MDX does not provide support for Front Matter, so we need to use this package to ignore
+Front Matter when we view our MDX files as pages in the browser.
+- `rehype-highlight`: allows us to use `highlight.js` to apply syntax highlighting to any code block.
+<br />
+
+## Implementation
+
+Before creating a feature, we need to discuss the architecture of the files and how the blog will display articles. First,
+we will create a new directory at the root of the project called blog. This directory will contain the articles with `.mdx`
+extension. In the pages directory, we will create a new directory called `blog`. This directory will contain:
+- `index.tsx`: This file will contain the code to display all articles on a page.
+- `[slug].tsx`: This file will contain the code to display an article. In this page, we will retrieve the slug of the
+article via the URL, retrieve the article with the same name file as the slug in the URL.
+
+```jsx
+// pages/blog/index.tsx
+
+import React from "react";
+import { getAllArticles } from "../../utils/markdown";
+import Header from "../../components/Header/Header";
+import HeaderLinks from "../../components/Header/HeaderLinks";
+import Parallax from "../../components/Parallax/Parallax";
+import GridContainer from "../../components/Grid/GridContainer";
+import GridItem from "../../components/Grid/GridItem";
+import { makeStyles } from "@material-ui/core/styles";
+import styles from "../../styles/jss/nextjs-material-kit/pages/components";
+import Footer from "../../components/Footer/Footer";
+import classNames from "classnames";
+import BlogCard from "../../components/Blog/BlogCard";
+
+const useStyles = makeStyles(styles);
+
+type PostType = {
+  title: string;
+  description: string;
+  published: string;
+  image_url: string;
+  slug: string;
+};
+
+export default function BlogPage(props: { posts: PostType[] }) {
+  const classes = useStyles();
+
+  const { posts } = props;
+  return (
+    <div>
+      <Header
+        brand="NextJS Material Kit"
+        rightLinks={<HeaderLinks />}
+        fixed
+        color="transparent"
+        changeColorOnScroll={{
+          height: 400,
+          color: "white",
+        }}
+      />
+      <Parallax image="/img/nextjs_header.jpg">
+        <div className={classes.container}>
+          <GridContainer>
+            <GridItem>
+              <div className={classes.brand}>
+                <h1 className={classes.title}>NextJS Blog.</h1>
+              </div>
+            </GridItem>
+          </GridContainer>
+        </div>
+      </Parallax>
+      <div className={classNames(classes.main, classes.mainRaised)}>
+        <GridContainer alignItems="center" justifyContent="center">
+          <GridItem xs={6}>
+            <div>
+              {posts.map((post, index) => (
+                <BlogCard post={post} key={index} />
+              ))}
+            </div>
+          </GridItem>
+        </GridContainer>
+      </div>
+      <Footer />
+    </div>
+  );
+}
+
+export const getStaticProps = async () => {
+  const posts = await getAllArticles();
+  return {
+    props: {
+      posts,
+    },
+  };
+};
+```
+
+And let's add the code for `[slug].jsx` file.display
+
+```tsx
+import * as fs from "fs";
+import * as path from "path";
+import matter from "gray-matter";
+import React from "react";
+import { MDXRemote } from "next-mdx-remote";
+import Image from "next/image";
+import { Box, Typography } from "@material-ui/core";
+import { serialize } from "next-mdx-remote/serialize";
+import Button from "../../components/CustomButtons/Button";
+import Parallax from "../../components/Parallax/Parallax";
+import { makeStyles } from "@material-ui/core/styles";
+import styles from "../../styles/jss/nextjs-material-kit/pages/components";
+import GridItem from "../../components/Grid/GridItem";
+import GridContainer from "../../components/Grid/GridContainer";
+import classNames from "classnames";
+import Header from "../../components/Header/Header";
+import HeaderLinks from "../../components/Header/HeaderLinks";
+
+const useStyles = makeStyles(styles);
+
+export const PostPage = (props: { frontMatter; mdxSource }) => {
+  const { frontMatter, mdxSource } = props;
+  const classes = useStyles();
+
+  return (
+    <div>
+      <Header
+        brand="NextJS Material Kit"
+        rightLinks={<HeaderLinks />}
+        fixed
+        color="white"
+      />
+      <Parallax image={frontMatter.image_url}>
+        <div className={classes.container}>
+          <GridContainer>
+            <GridItem>
+              <div className={classes.brand}>
+                <h1 className={classes.title}>{frontMatter.title}</h1>
+                <Typography variant="h5">{frontMatter.published}</Typography>
+                <Typography variant="body2">
+                  {frontMatter.description}
+                </Typography>
+              </div>
+            </GridItem>
+          </GridContainer>
+        </div>
+      </Parallax>
+      <div className={classNames(classes.main, classes.mainRaised)}>
+        <Box
+          sx={{
+            p: 24,
+          }}
+        >
+          <div>
+            <MDXRemote
+              {...mdxSource}
+              components={{ Image, Typography, Button }}
+            />
+          </div>
+        </Box>
+      </div>
+    </div>
+  );
+};
+
+const getStaticPaths = async () => {
+  const files = fs.readdirSync(path.join("blog"));
+  const paths = files.map((filename) => ({
+    params: {
+      slug: filename.replace(".mdx", ""),
+    },
+  }));
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+const getStaticProps = async ({ params: { slug } }) => {
+  const markdownWithMeta = fs.readFileSync(
+    path.join("blog/", slug + ".mdx"),
+    "utf-8"
+  );
+
+  const { data: frontMatter, content } = matter(markdownWithMeta);
+  const mdxSource = await serialize(content);
+
+  return {
+    props: {
+      frontMatter,
+      mdxSource,
+    },
+  };
+};
+
+export { getStaticProps, getStaticPaths };
+export default PostPage;
+```
+
+Let's add the methods needed to retrieve list of articles and retrieve a single article using the slug.
+
+```ts
+// utils/markdown.ts
+
+```
 
 - How the feature consumes the content
 - The article order
-- The index page: how is contructed 
-- `Next`, `Prev` links generation 
+- The index page: how is contructed
+- `Next`, `Prev` links generation
 
 <br />
 
