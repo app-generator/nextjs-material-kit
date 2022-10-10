@@ -231,10 +231,9 @@ const getStaticProps = async ({ params: { slug } }) => {
 export { getStaticProps, getStaticPaths };
 export default PostPage;
 ```
-
 Let's add the methods needed to retrieve list of articles and retrieve a single article using the slug.
 
-```js
+```ts
 // utils/markdown.ts
 
 import * as path from "path";
@@ -265,4 +264,8 @@ export async function getAllArticles() {
 ```
 
 The articles can be consulted and displayed. But what happens when you have a lot of content? Now, you need to have
-pagination feature.
+pagination feature. Add a new function to the `markdown.ts` file.
+
+```ts
+
+```

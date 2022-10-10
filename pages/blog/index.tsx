@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { getAllArticles } from "../../utils/markdown";
 import Header from "../../components/Header/Header";
 import HeaderLinks from "../../components/Header/HeaderLinks";
@@ -10,6 +10,7 @@ import styles from "../../styles/jss/nextjs-material-kit/pages/components";
 import Footer from "../../components/Footer/Footer";
 import classNames from "classnames";
 import BlogCard from "../../components/Blog/BlogCard";
+import Button from "../../components/CustomButtons/Button";
 
 const useStyles = makeStyles(styles);
 
@@ -25,6 +26,17 @@ export default function BlogPage(props: { posts: PostType[] }) {
   const classes = useStyles();
 
   const { posts } = props;
+
+  const [filteredPosts, setFilteredPosts] = useState(posts);
+  const [currentPageIndex, setCurrentPageIndex] = useState(1);
+
+  const loadMorePosts = async () => {
+    const res = await fetch(`/api/post?page=${currentPageIndex + 1}`); // absolute url is supported here
+    const posts = await res.json();
+
+    setFilteredPosts((_posts) => [..._posts, ...posts]);
+    setCurrentPageIndex((_pageIndex) => _pageIndex + 1);
+  };
 
   return (
     <div>
@@ -53,10 +65,13 @@ export default function BlogPage(props: { posts: PostType[] }) {
         <GridContainer alignItems="center" justifyContent="center">
           <GridItem xs={6}>
             <div>
-              {posts.map((post, index) => (
+              {filteredPosts.map((post, index) => (
                 <BlogCard post={post} key={index} />
               ))}
             </div>
+            <Button onClick={loadMorePosts} size="md" color="primary">
+              Load more
+            </Button>
           </GridItem>
         </GridContainer>
       </div>
