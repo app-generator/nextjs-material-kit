@@ -7,8 +7,8 @@ image_url: "/img/examples/studio-2.jpg"
 
 ## General information
 
-Next.js is great framework based on React to help develop simple and powerful web applications or websites. And it comes
-with interesting integration for Markdown content. Let's learn how we can implement a MDX blog module using Next.js.
+Next.js is a great framework based on React to help develop simple and powerful web applications or websites. And it comes
+with interesting integration for Markdown content. Let's learn how we can implement an MDX blog module using Next.js.
 
 <br />
 
@@ -30,8 +30,8 @@ Before creating a feature, we need to discuss the architecture of the files and 
 we will create a new directory at the root of the project called blog. This directory will contain the articles with `.mdx`
 extension. In the pages directory, we will create a new directory called `blog`. This directory will contain:
 - `index.tsx`: This file will contain the code to display all articles on a page.
-- `[slug].tsx`: This file will contain the code to display an article. In this page, we will retrieve the slug of the
-article via the URL, retrieve the article with the same name file as the slug in the URL.
+- `[slug].tsx`: This file will contain the code to display an article. On this page, we will retrieve the slug of the
+article via the URL, and retrieve the article with the same name file as the slug in the URL.
 
 ```jsx
 // pages/blog/index.tsx
@@ -231,7 +231,7 @@ const getStaticProps = async ({ params: { slug } }) => {
 export { getStaticProps, getStaticPaths };
 export default PostPage;
 ```
-Let's add the methods needed to retrieve list of articles and retrieve a single article using the slug.
+Let's add the methods needed to retrieve a list of articles and retrieve a single article using the slug.
 
 ```ts
 // utils/markdown.ts
@@ -264,8 +264,147 @@ export async function getAllArticles() {
 ```
 
 The articles can be consulted and displayed. But what happens when you have a lot of content? Now, you need to have
-pagination feature. Add a new function to the `markdown.ts` file.
+a pagination feature. Add a new function to the `markdown.ts` file.
 
 ```ts
+export const filterPostsByPageIndex = (posts: [], pageIndex: number) => {
+  const postPerPage = 5;
+  // get the total posts from page 1 to current page
+  const totalPagePosts = +pageIndex * postPerPage;
 
+  // get the total posts from page 1 to the previous page
+  const prevPagePosts = totalPagePosts - postPerPage;
+
+  return posts.filter(
+    (post, index) => index < totalPagePosts && index >= prevPagePosts
+  );
+};
 ```
+
+And let's rewrite the `getAllArticles` function.
+
+```ts
+export async function getAllArticles(pageIndex = 1) {
+  const articles = fs.readdirSync(path.join(process.cwd(), "blog"));
+
+  const totalArticles = articles.reduce((allArticles, articleSlug) => {
+    // get parsed data from markdown files in the "blog" dir
+    const source = fs.readFileSync(
+      path.join(process.cwd(), "blog", articleSlug),
+      "utf-8"
+    );
+    const { data } = matter(source);
+
+    return [
+      {
+        ...data,
+        slug: articleSlug.replace(".mdx", ""),
+        published: data.published.toString(),
+      },
+      ...allArticles,
+    ];
+  }, []);
+
+  return filterPostsByPageIndex(totalArticles, pageIndex);
+}
+```
+
+With the functions above ready, let's add an API to help us fetch the posts. As it will be much easier to manage pagination with HTTP requests.
+
+In the pages directory, create a new directory called `api`. Inside the newly created directory, create a file called
+`post.ts`.
+
+```ts
+import {getAllArticles} from "../../utils/markdown";
+
+export default async function handler(req, res) {
+  const {page} = req.query;
+
+  const articles = await getAllArticles(page);
+
+  articles
+      .map((post) => post)
+      .sort((a, b) => {
+        if (a.published > b.published) return 1;
+        if (a.published < b.published) return -1;
+
+        return 0;
+      });
+
+  const posts = articles.map((post) => {
+    return {
+      ...post,
+      published: new Date(post.published).toDateString(),
+    };
+  });
+
+  res.status(200).json(posts);
+}
+```
+
+And let's rewrite the `BlogPage` component to fetch data from the Next.js server and add pagination.
+
+```tsx
+export default function BlogPage(props: { posts: PostType[] }) {
+  const classes = useStyles();
+
+  const { posts } = props;
+
+  const [filteredPosts, setFilteredPosts] = useState(posts);
+  const [currentPageIndex, setCurrentPageIndex] = useState(1);
+
+  const loadMorePosts = async () => {
+    const res = await fetch(`/api/post?page=${currentPageIndex + 1}`); // absolute url is supported here
+    const posts = await res.json();
+
+    setFilteredPosts((_posts) => [..._posts, ...posts]);
+    setCurrentPageIndex((_pageIndex) => _pageIndex + 1);
+  };
+
+  return (
+    <div>
+      <Header
+        brand="NextJS Material Kit"
+        rightLinks={<HeaderLinks />}
+        fixed
+        color="transparent"
+        changeColorOnScroll={{
+          height: 400,
+          color: "white",
+        }}
+      />
+      <Parallax image="/img/nextjs_header.jpg">
+        <div className={classes.container}>
+          <GridContainer>
+            <GridItem>
+              <div className={classes.brand}>
+                <h1 className={classes.title}>NextJS Blog.</h1>
+              </div>
+            </GridItem>
+          </GridContainer>
+        </div>
+      </Parallax>
+      <div className={classNames(classes.main, classes.mainRaised)}>
+        <GridContainer alignItems="center" justifyContent="center">
+          <GridItem xs={6}>
+            <div>
+              {filteredPosts.map((post, index) => (
+                <BlogCard post={post} key={index} />
+              ))}
+            </div>
+            <Button onClick={loadMorePosts} size="md" color="primary">
+              Load more
+            </Button>
+          </GridItem>
+        </GridContainer>
+      </div>
+      <Footer />
+    </div>
+  );
+}
+```
+
+Then you have a functional blog with the following features.
+- Pagination
+- Support for MDX components
+- Data fetching from a Next.js API
